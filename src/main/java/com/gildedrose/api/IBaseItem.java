@@ -1,4 +1,4 @@
-package com.gildedrose.items;
+package com.gildedrose.api;
 
 public interface IBaseItem {
     void updateQuality();

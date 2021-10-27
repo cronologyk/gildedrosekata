@@ -1,5 +1,7 @@
 package com.gildedrose.items;
 
+import com.gildedrose.Item;
+
 public class AgedBrie extends StandardItem {
 
     public static final int DEFAULT_QUALITY_INCREMENT = 1;

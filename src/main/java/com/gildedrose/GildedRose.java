@@ -1,8 +1,7 @@
 package com.gildedrose;
 
 
-import com.gildedrose.items.IBaseItem;
-import com.gildedrose.items.Item;
+import com.gildedrose.api.IBaseItem;
 import com.gildedrose.items.ItemFactory;
 
 import java.util.LinkedList;
@@ -23,9 +22,9 @@ public class GildedRose {
     }
 
     public void updateQuality() {
-        for (IBaseItem item : workerItems) {
+        workerItems.forEach(item -> {
             item.updateQuality();
             item.updateSellIn();
-        }
+        });
     }
 }

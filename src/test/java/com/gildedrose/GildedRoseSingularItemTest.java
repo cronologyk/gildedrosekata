@@ -1,6 +1,5 @@
 package com.gildedrose;
 
-import com.gildedrose.items.Item;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -238,11 +237,38 @@ class GildedRoseSingularItemTest {
     }
 
     @Test
-    void conjurableStandardItemQualityDegradesTwiceAsFast() {
+    void conjuredStandardItemQualityDegradesTwiceAsFast() {
         int testQuality = 30;
         int expectedQuality = 28;
 
-        Item[] items = new Item[] { new Item("Conjurable Satanic pie", 20, testQuality) };
+        Item[] items = new Item[] { new Item("Conjured Satanic pie", 20, testQuality) };
+
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(expectedQuality, items[0].quality);
+    }
+
+    @Test
+    void conjuredAgedBrieQualityIncreasesTwiceAsFast() {
+        int testQuality = 30;
+        int expectedQuality = 32;
+
+        Item[] items = new Item[] { new Item("Conjured " + BRIE_CHEESE_KEY, 20, testQuality) };
+
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(expectedQuality, items[0].quality);
+    }
+
+    @Test
+    void conjuredSulfurasDoesNotHaveQualityAffected() {
+        int expectedQuality = 80;
+
+        Item[] items = new Item[] { new Item("Conjured " + SULFURAS_ITEM_KEY,  0, 80) };
 
         GildedRose app = new GildedRose(items);
 

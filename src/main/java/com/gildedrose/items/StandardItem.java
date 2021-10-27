@@ -1,8 +1,9 @@
 package com.gildedrose.items;
 
-public class StandardItem extends BaseItem implements ConjurableItem {
+import com.gildedrose.Item;
 
-    public static final int DEFAULT_SELLIN_DECREMENT = 1;
+public class StandardItem extends BaseItem  {
+
     public static final int DEFAULT_QUALITY_DECREMENT = 1;
     public static final int EXPIRED_QALITY_DECREMENT = 2;
 
@@ -19,11 +20,6 @@ public class StandardItem extends BaseItem implements ConjurableItem {
 
     @Override
     public void updateSellIn() {
-        decreaseSellInBy(DEFAULT_SELLIN_DECREMENT);
-    }
-
-    @Override
-    public boolean isConjured() {
-        return false;
+        decreaseSellIn();
     }
 }
