@@ -69,7 +69,7 @@ class GildedRoseSingularItemTest {
 
     @Test
     void qualityCannotExceed50ForAgedBrie() {
-        Item[] items = new Item[] { new Item(BRIE_CHEESE_KEY, 1, DEFAULT_MAX_QUALITY) };
+        Item[] items = new Item[] { new AgedBrie( 1, DEFAULT_MAX_QUALITY) };
 
         GildedRose app = new GildedRose(items);
 
@@ -84,7 +84,7 @@ class GildedRoseSingularItemTest {
         int testSellIn = 30;
         int expectedSellIn = testSellIn - 1;
 
-        Item[] items = new Item[] { new Item(BRIE_CHEESE_KEY, testSellIn, 5) };
+        Item[] items = new Item[] { new AgedBrie( testSellIn, 5) };
 
         GildedRose app = new GildedRose(items);
 
@@ -97,7 +97,7 @@ class GildedRoseSingularItemTest {
     void agedBrieIncreasesInQualityForPositiveSellIn() {
         int testQuality = 1;
         int expectedQuality = testQuality + 1;
-        Item[] items = new Item[] { new Item( BRIE_CHEESE_KEY, 1, testQuality) };
+        Item[] items = new Item[] { new AgedBrie( 1, testQuality) };
 
         GildedRose app = new GildedRose(items);
 
@@ -110,7 +110,7 @@ class GildedRoseSingularItemTest {
     void agedBrieIncreasesDoubleInQualityForNegativeSellIn() {
         int testQuality = 1;
         int expectedQuality = 3;
-        Item[] items = new Item[] { new Item(BRIE_CHEESE_KEY, -1, testQuality) };
+        Item[] items = new Item[] { new AgedBrie( -1, testQuality) };
 
         GildedRose app = new GildedRose(items);
 
@@ -121,7 +121,7 @@ class GildedRoseSingularItemTest {
 
     @Test
     void sulfurasDoesNotDecreaseInQuality() {
-        Item[] items = new Item[] { new Item(SULFURAS_ITEM_KEY, 0, 80) };
+        Item[] items = new Item[] { new Sulfuras() };
 
         GildedRose app = new GildedRose(items);
 
@@ -135,7 +135,7 @@ class GildedRoseSingularItemTest {
     void sulfurasDoesNotDecreaseInSellIn() {
         int expectedSellIn = 0;
 
-        Item[] items = new Item[] { new Item(SULFURAS_ITEM_KEY, 0, 80) };
+        Item[] items = new Item[] { new Sulfuras() };
 
         GildedRose app = new GildedRose(items);
 
@@ -148,7 +148,7 @@ class GildedRoseSingularItemTest {
     void backStagePassesIncreaseByOneForSellInHigherThanTen() {
         int testQuality = 30;
         int expectedQuality = testQuality + 1;
-        Item[] items = new Item[] { new Item(BACKSTAGE_PASSES_ITEM_KEY, 11, testQuality) };
+        Item[] items = new Item[] { new BackstagePass( 11, testQuality) };
 
         GildedRose app = new GildedRose(items);
 
@@ -162,7 +162,7 @@ class GildedRoseSingularItemTest {
         int testSellIn = 30;
         int expectedSellIn = testSellIn - 1;
 
-        Item[] items = new Item[] { new Item(BACKSTAGE_PASSES_ITEM_KEY, testSellIn, 5) };
+        Item[] items = new Item[] { new BackstagePass( testSellIn, 5) };
 
         GildedRose app = new GildedRose(items);
 
@@ -175,7 +175,7 @@ class GildedRoseSingularItemTest {
     void backStagePassesIncreaseByTwoForSellEqualTen() {
         int testQuality = 30;
         int expectedQuality = testQuality + 2;
-        Item[] items = new Item[] { new Item(BACKSTAGE_PASSES_ITEM_KEY, BACKSTAGE_PASSES_DOUBLE_VALUE_INCREASE_SELLIN, testQuality) };
+        Item[] items = new Item[] { new BackstagePass( BACKSTAGE_PASSES_DOUBLE_VALUE_INCREASE_SELLIN, testQuality) };
 
         GildedRose app = new GildedRose(items);
 
@@ -188,7 +188,7 @@ class GildedRoseSingularItemTest {
     void backStagePassesIncreaseByTwoForSellEqualNine() {
         int testQuality = 30;
         int expectedQuality = testQuality + 2;
-        Item[] items = new Item[] { new Item(BACKSTAGE_PASSES_ITEM_KEY, BACKSTAGE_PASSES_DOUBLE_VALUE_INCREASE_SELLIN - 1, testQuality) };
+        Item[] items = new Item[] { new BackstagePass( BACKSTAGE_PASSES_DOUBLE_VALUE_INCREASE_SELLIN - 1, testQuality) };
 
         GildedRose app = new GildedRose(items);
 
@@ -201,7 +201,7 @@ class GildedRoseSingularItemTest {
     void backStagePassesIncreaseByTwoForSellEqualSix() {
         int testQuality = 30;
         int expectedQuality = testQuality + 2;
-        Item[] items = new Item[] { new Item(BACKSTAGE_PASSES_ITEM_KEY, BACKSTAGE_PASSES_TRIPLE_VALUE_INCREASE_SELLIN + 1, testQuality) };
+        Item[] items = new Item[] { new BackstagePass( BACKSTAGE_PASSES_TRIPLE_VALUE_INCREASE_SELLIN + 1, testQuality) };
 
         GildedRose app = new GildedRose(items);
 
@@ -214,7 +214,7 @@ class GildedRoseSingularItemTest {
     void backStagePassesIncreaseByTwoForSellEqualOne() {
         int testQuality = 30;
         int expectedQuality = testQuality + 3;
-        Item[] items = new Item[] { new Item(BACKSTAGE_PASSES_ITEM_KEY, BACKSTAGE_PASSES_TRIPLE_VALUE_INCREASE_SELLIN, testQuality) };
+        Item[] items = new Item[] { new BackstagePass( BACKSTAGE_PASSES_TRIPLE_VALUE_INCREASE_SELLIN, testQuality) };
 
         GildedRose app = new GildedRose(items);
 
@@ -227,7 +227,7 @@ class GildedRoseSingularItemTest {
     void backStagePassesHaveZeroValueAfterSellIn() {
         int testQuality = 30;
         int expectedQuality = 0;
-        Item[] items = new Item[] { new Item(BACKSTAGE_PASSES_ITEM_KEY, 0, testQuality) };
+        Item[] items = new Item[] { new BackstagePass( 0, testQuality) };
 
         GildedRose app = new GildedRose(items);
 
@@ -237,38 +237,11 @@ class GildedRoseSingularItemTest {
     }
 
     @Test
-    void conjuredStandardItemQualityDegradesTwiceAsFast() {
+    void conjurableStandardItemQualityDegradesTwiceAsFast() {
         int testQuality = 30;
         int expectedQuality = 28;
 
-        Item[] items = new Item[] { new Item("Conjured Satanic pie", 20, testQuality) };
-
-        GildedRose app = new GildedRose(items);
-
-        app.updateQuality();
-
-        assertEquals(expectedQuality, items[0].quality);
-    }
-
-    @Test
-    void conjuredAgedBrieQualityIncreasesTwiceAsFast() {
-        int testQuality = 30;
-        int expectedQuality = 32;
-
-        Item[] items = new Item[] { new Item("Conjured " + BRIE_CHEESE_KEY, 20, testQuality) };
-
-        GildedRose app = new GildedRose(items);
-
-        app.updateQuality();
-
-        assertEquals(expectedQuality, items[0].quality);
-    }
-
-    @Test
-    void conjuredSulfurasDoesNotHaveQualityAffected() {
-        int expectedQuality = 80;
-
-        Item[] items = new Item[] { new Item("Conjured " + SULFURAS_ITEM_KEY,  0, 80) };
+        Item[] items = new Item[] { new ConjurableStandardItem("Satanic pie", 20, testQuality) };
 
         GildedRose app = new GildedRose(items);
 
